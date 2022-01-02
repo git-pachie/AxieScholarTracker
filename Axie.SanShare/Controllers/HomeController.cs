@@ -10,6 +10,10 @@ namespace Axie.SanShare.Controllers
     {
         public ActionResult Index()
         {
+
+
+
+
             return View();
         }
 

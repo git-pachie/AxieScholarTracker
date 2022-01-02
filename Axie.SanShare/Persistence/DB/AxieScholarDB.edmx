@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AxieScholarDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RoninSLP">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateBatchCode" Type="date" Nullable="false" />
+          <Property Name="RoninID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="MMR" Type="bigint" />
+          <Property Name="WalletSLP" Type="bigint" />
+          <Property Name="InGameSLP" Type="bigint" />
+          <Property Name="LastClaimDate" Type="datetime" />
+          <Property Name="NextClaimDate" Type="datetime" />
+          <Property Name="TotalSLP" Type="bigint" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="25" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="RawSLPTotalYesterday" Type="bigint" />
+          <Property Name="RawSLPDailyYesterday" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ScholarProfile">
+          <Key>
+            <PropertyRef Name="ScholarRecordId" />
+          </Key>
+          <Property Name="ScholarRecordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScholarName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoninAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" />
+          <Property Name="ShareManagerPercentage" Type="float" />
+          <Property Name="ShareScholarPercentage" Type="float" />
+          <Property Name="MarketPlaceEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="MarketPlacePassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="AxieScholarDBModelStoreContainer">
+          <EntitySet Name="RoninSLP" EntityType="Self.RoninSLP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScholarProfile" EntityType="Self.ScholarProfile" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AxieScholarDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AxieScholarDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ScholarProfiles" EntityType="AxieScholarDBModel.ScholarProfile" />
+          <EntitySet Name="RoninSLPs" EntityType="AxieScholarDBModel.RoninSLP" />
+        </EntityContainer>
+        <EntityType Name="ScholarProfile">
+          <Key>
+            <PropertyRef Name="ScholarRecordId" />
+          </Key>
+          <Property Name="ScholarRecordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScholarName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoninAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsEnabled" Type="Boolean" />
+          <Property Name="ShareManagerPercentage" Type="Double" />
+          <Property Name="ShareScholarPercentage" Type="Double" />
+          <Property Name="MarketPlaceEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MarketPlacePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RoninSLP">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateBatchCode" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RoninID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MMR" Type="Int64" />
+          <Property Name="WalletSLP" Type="Int64" />
+          <Property Name="InGameSLP" Type="Int64" />
+          <Property Name="LastClaimDate" Type="DateTime" Precision="3" />
+          <Property Name="NextClaimDate" Type="DateTime" Precision="3" />
+          <Property Name="TotalSLP" Type="Int64" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="RawSLPTotalYesterday" Type="Int64" />
+          <Property Name="RawSLPDailyYesterday" Type="Int64" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AxieScholarDBModelStoreContainer" CdmEntityContainer="AxieScholarDBEntities">
+          <EntitySetMapping Name="ScholarProfiles">
+            <EntityTypeMapping TypeName="AxieScholarDBModel.ScholarProfile">
+              <MappingFragment StoreEntitySet="ScholarProfile">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="MarketPlacePassword" ColumnName="MarketPlacePassword" />
+                <ScalarProperty Name="MarketPlaceEmail" ColumnName="MarketPlaceEmail" />
+                <ScalarProperty Name="ShareScholarPercentage" ColumnName="ShareScholarPercentage" />
+                <ScalarProperty Name="ShareManagerPercentage" ColumnName="ShareManagerPercentage" />
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+                <ScalarProperty Name="RoninAddress" ColumnName="RoninAddress" />
+                <ScalarProperty Name="ScholarName" ColumnName="ScholarName" />
+                <ScalarProperty Name="ScholarRecordId" ColumnName="ScholarRecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoninSLPs">
+            <EntityTypeMapping TypeName="AxieScholarDBModel.RoninSLP">
+              <MappingFragment StoreEntitySet="RoninSLP">
+                <ScalarProperty Name="RawSLPDailyYesterday" ColumnName="RawSLPDailyYesterday" />
+                <ScalarProperty Name="RawSLPTotalYesterday" ColumnName="RawSLPTotalYesterday" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TotalSLP" ColumnName="TotalSLP" />
+                <ScalarProperty Name="NextClaimDate" ColumnName="NextClaimDate" />
+                <ScalarProperty Name="LastClaimDate" ColumnName="LastClaimDate" />
+                <ScalarProperty Name="InGameSLP" ColumnName="InGameSLP" />
+                <ScalarProperty Name="WalletSLP" ColumnName="WalletSLP" />
+                <ScalarProperty Name="MMR" ColumnName="MMR" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoninID" ColumnName="RoninID" />
+                <ScalarProperty Name="DateBatchCode" ColumnName="DateBatchCode" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
